@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet of Coins — Cryptocurrency Encyclopedia</title>
+<meta name="description" content="In-depth guides to the top cryptocurrencies. Learn about Bitcoin, Ethereum, Solana, Cardano, Polkadot, and Avalanche — technology, use cases, and fundamentals.">
+<meta name="keywords" content="cryptocurrency guide, bitcoin explained, ethereum guide, solana, cardano, polkadot, avalanche, crypto encyclopedia">
+<meta property="og:title" content="Internet of Coins — Cryptocurrency Encyclopedia">
+<meta property="og:description" content="In-depth guides to the top cryptocurrencies. Learn about Bitcoin, Ethereum, Solana, Cardano, Polkadot, and Avalanche — technology, use cases, and fundamentals.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://internetofcoins.io">
+<link rel="canonical" href="https://internetofcoins.io">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --text: #e8e8e8;
+  --text-secondary: #aaaaaa;
+  --text-muted: #888888;
+  --accent: var(--site-accent, #2563eb);
+  --accent-light: var(--site-accent-light, #1a3a6b);
+  --accent-dark: var(--site-accent-dark, #1e40af);
+  --border: #222222;
+  --max-w: 820px;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.nav-updated {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── Hero ── */
+.hero {
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+/* ── Intro ── */
+.section--intro {
+  padding: 3.5rem 0;
+}
+
+.intro-copy {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* ── Topic Cards ── */
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.topic-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1.75rem 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0 1.25rem;
+}
+
+.topic-card + .topic-card {
+  border-top: none;
+}
+
+.topic-card:hover {
+  border-color: var(--accent);
+  background: #141414;
+}
+
+.topic-number {
+  grid-row: 1 / 3;
+  grid-column: 1;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  line-height: 1;
+  padding-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.topic-card:hover .topic-number {
+  color: var(--accent);
+}
+
+.topic-header {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.topic-icon {
+  display: none;
+}
+
+.topic-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.topic-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.topic-body {
+  grid-column: 2;
+}
+
+.topic-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.topic-points {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.topic-points li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 3px 0 3px 1.25rem;
+  position: relative;
+}
+
+.topic-points li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.topic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.topic-link::after {
+  content: '\2197';
+  font-size: 0.9em;
+}
+
+/* ── Guide ── */
+.guide-body {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  font-size: 0.95rem;
+}
+
+.guide-body h3 {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.guide-body h3:first-child {
+  margin-top: 0;
+}
+
+.guide-body p {
+  margin-bottom: 1rem;
+}
+
+.guide-body ul,
+.guide-body ol {
+  margin: 0.5rem 0 1rem 1.25rem;
+}
+
+.guide-body li {
+  margin-bottom: 0.35rem;
+}
+
+/* ── Resources ── */
+.resources-body {
+  color: var(--text-secondary);
+  line-height: 1.85;
+  font-size: 0.95rem;
+}
+
+.resources-body h3 {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.resources-body h3:first-child {
+  margin-top: 0;
+}
+
+.resources-body p {
+  margin-bottom: 1rem;
+}
+
+.resources-body a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.resources-body a:hover {
+  text-decoration: none;
+  border-bottom-color: var(--accent);
+}
+
+.resources-body ul,
+.resources-body ol {
+  margin: 0.5rem 0 1rem 1.25rem;
+}
+
+.resources-body li {
+  margin-bottom: 0.35rem;
+}
+
+/* ── FAQ ── */
+.faq-list {
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 1.25rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+  gap: 1rem;
+  line-height: 1.4;
+}
+
+.faq-q::after {
+  content: '+';
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.faq-q:hover::after {
+  color: var(--accent);
+}
+
+.faq-q.open::after { content: '\2212'; }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-a.open {
+  max-height: 600px;
+  padding-bottom: 1.25rem;
+}
+
+.faq-a p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer-top {
+  padding: 3rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-links-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  padding: 1.25rem 0 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .topic-card {
+    grid-template-columns: 2.25rem 1fr;
+    gap: 0 1rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .topic-number {
+    font-size: 1.25rem;
+  }
+
+  .footer-top {
+    flex-direction: column;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Internet of Coins</a>
+    <span class="nav-updated">Updated July 2026</span>
+  </div>
+</nav>
+<span class="logo-icon" style="display:none" aria-hidden="true">🪙</span>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Know every coin before you buy</h1>
+    <p class="hero-sub">Deep dives into the world's top cryptocurrencies — what they do, how they work, and what makes each one different.</p>
+  </div>
+</header>
+
+<main class="main">
+
+  <section class="section section--intro">
+    <div class="section-inner">
+      <p class="intro-copy">There are thousands of cryptocurrencies, but only a handful have real technology, active development, and long-term potential. We profile the most important coins and tokens, breaking down their technology, ecosystem, tokenomics, and competitive position so you can evaluate them on substance, not hype.</p>
+    </div>
+  </section>
+
+  <section class="section section--topics" id="topics">
+    <div class="section-inner">
+      <span class="section-label">Explore</span>
+      <h2 class="section-heading">Coin profiles</h2>
+      <div class="topic-list">
+        <div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">₿</span>
+    <span class="topic-name">Bitcoin (BTC)</span>
+    <span class="topic-tag">Store of Value</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">The original cryptocurrency and digital gold. Bitcoin is the most decentralized, secure, and battle-tested blockchain network in existence, with a fixed supply of 21 million coins and over 15 years of unbroken operation.</p>
+    <ul class="topic-points">
+      Fixed supply: 21 million BTC maximum,Proof of Work consensus (most secure),Lightning Network for fast payments,Largest network effect and liquidity,Institutional adoption accelerating
+    </ul>
+    <a href="#affiliate-bitcoin" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Bitcoin</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">⟠</span>
+    <span class="topic-name">Ethereum (ETH)</span>
+    <span class="topic-tag">Smart Contracts</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">The world's leading smart contract platform. Ethereum hosts the vast majority of DeFi protocols, NFT marketplaces, and decentralized applications. Its transition to Proof of Stake dramatically reduced energy consumption.</p>
+    <ul class="topic-points">
+      Largest smart contract ecosystem,Proof of Stake since The Merge (2022),EIP-1559 fee burning mechanism,Layer 2 rollup scaling roadmap,Most active developer community
+    </ul>
+    <a href="#affiliate-ethereum" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Ethereum</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">◎</span>
+    <span class="topic-name">Solana (SOL)</span>
+    <span class="topic-tag">High Performance</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">A high-throughput blockchain capable of processing thousands of transactions per second at extremely low fees. Solana has become the go-to chain for trading, meme coins, and consumer-facing applications.</p>
+    <ul class="topic-points">
+      400ms block times, sub-cent fees,Proof of History + Proof of Stake,Strong DeFi and NFT ecosystem,Saga phone and mobile push,Firedancer validator client for resilience
+    </ul>
+    <a href="#affiliate-solana" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Solana</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">🔷</span>
+    <span class="topic-name">Cardano (ADA)</span>
+    <span class="topic-tag">Research-Driven</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">A blockchain built on peer-reviewed academic research with a methodical, formal-verification approach to development. Cardano emphasizes correctness and sustainability over speed to market.</p>
+    <ul class="topic-points">
+      Peer-reviewed development process,Ouroboros Proof of Stake protocol,eUTXO model for deterministic fees,Strong presence in developing nations,Plutus smart contract platform
+    </ul>
+    <a href="#affiliate-cardano" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Cardano</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">⬡</span>
+    <span class="topic-name">Polkadot (DOT)</span>
+    <span class="topic-tag">Interoperability</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">A multi-chain protocol that connects specialized blockchains into one unified network. Polkadot's parachain architecture allows different chains to communicate and share security.</p>
+    <ul class="topic-points">
+      Relay chain + parachain architecture,Cross-chain message passing (XCM),Shared security model,On-chain governance and treasury,Substrate framework for chain building
+    </ul>
+    <a href="#affiliate-polkadot" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Polkadot</a>
+  </div>
+</div>
+
+<div class="topic-card">
+  <span class="topic-number"></span>
+  <div class="topic-header">
+    <span class="topic-icon">🔺</span>
+    <span class="topic-name">Avalanche (AVAX)</span>
+    <span class="topic-tag">Subnets</span>
+  </div>
+  <div class="topic-body">
+    <p class="topic-desc">A platform of platforms. Avalanche lets anyone launch custom blockchain networks (Subnets) with their own rules and validators while benefiting from the broader Avalanche ecosystem and consensus.</p>
+    <ul class="topic-points">
+      Sub-second finality,Custom Subnet architecture,Avalanche consensus protocol,Strong institutional and enterprise adoption,EVM-compatible C-Chain
+    </ul>
+    <a href="#affiliate-avalanche" class="topic-link" target="_blank" rel="noopener nofollow">Learn about Avalanche</a>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--guide" id="guide">
+    <div class="section-inner">
+      <span class="section-label">Guide</span>
+      <h2 class="section-heading">How to evaluate a cryptocurrency</h2>
+      <div class="guide-body"><h3>Check the technology</h3><p>What consensus mechanism does it use? How fast are transactions? What's the block size? Understanding the technical architecture tells you what a blockchain can and can't do.</p><h3>Evaluate the team and development</h3><p>Look at GitHub activity, the founding team's track record, and the project's governance model. Active development and transparent leadership are strong positive signals.</p><h3>Understand tokenomics</h3><p>How many tokens exist? Is there a max supply? How are new tokens created? Inflationary vs. deflationary models have very different implications for long-term value.</p><h3>Assess the ecosystem</h3><p>A blockchain is only as valuable as the applications built on it. Check total value locked (TVL), number of active developers, and real user adoption — not just market cap.</p></div>
+    </div>
+  </section>
+
+  <section class="section section--resources" id="resources">
+    <div class="section-inner">
+      <span class="section-label">Resources</span>
+      <h2 class="section-heading">Research tools</h2>
+      <div class="resources-body"><h3>CoinGecko</h3><p>Comprehensive cryptocurrency data aggregator with price tracking, market metrics, and project fundamentals. <a href="https://www.coingecko.com" target="_blank" rel="noopener">Visit CoinGecko</a></p><h3>DeFi Llama</h3><p>The best dashboard for tracking total value locked across DeFi protocols and chains. Essential for ecosystem analysis. <a href="https://defillama.com" target="_blank" rel="noopener">Visit DeFi Llama</a></p><h3>Messari</h3><p>Professional-grade crypto research with detailed project profiles, governance tracking, and institutional-quality reports. <a href="https://messari.io" target="_blank" rel="noopener">Visit Messari</a></p></div>
+    </div>
+  </section>
+
+  <section class="section section--faq" id="faq">
+    <div class="section-inner">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-heading">Frequently asked questions</h2>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-name">Internet of Coins</span>
+        <p class="footer-disclaimer">InternetOfCoins.io provides educational cryptocurrency profiles. This is not financial advice. Always do your own research before investing. We may earn commissions through affiliate links.</p>
+      </div>
+      <div class="footer-links">
+        <span class="footer-links-heading">More resources</span>
+        <a href="https://sepehr.ai" target="_blank" rel="noopener">sepehr.ai</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Internet of Coins. All rights reserved. Some links on this site are affiliate links. We may earn a commission if you make a purchase at no extra cost to you.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SITE_CONFIG = {"faqs":[{"q":"Which cryptocurrency should I buy first?","a":"Most newcomers start with Bitcoin or Ethereum because they have the longest track records, most liquidity, and broadest adoption. They're the least risky entry points. Only explore smaller coins after you understand the fundamentals."},{"q":"What's the difference between a coin and a token?","a":"A coin (like BTC, ETH, SOL) is the native currency of its own blockchain. A token (like USDC, UNI, LINK) is built on top of someone else's blockchain using a standard like ERC-20. The distinction matters for understanding where value and security come from."},{"q":"Are altcoins riskier than Bitcoin?","a":"Generally, yes. Bitcoin has the strongest network effect, most liquidity, and longest track record. Altcoins can offer higher potential returns but come with significantly more risk — including the possibility of going to zero. Diversification and research are key."},{"q":"How often are these profiles updated?","a":"We review and update our coin profiles quarterly to reflect major protocol upgrades, ecosystem developments, and changes in competitive positioning. The crypto space moves fast, and we aim to keep our analysis current."},{"q":"Do you cover meme coins?","a":"This site focuses on cryptocurrencies with significant technology and real-world utility. We don't profile meme coins here, as their value is driven primarily by social sentiment rather than fundamentals."}],"accentColor":"#6366f1","accentLight":"#e0e7ff","accentDark":"#4f46e5","ctaText":""};
+document.addEventListener('DOMContentLoaded', () => {
+  // Accent color
+  if (SITE_CONFIG.accentColor) {
+    document.documentElement.style.setProperty('--site-accent', SITE_CONFIG.accentColor);
+    document.documentElement.style.setProperty('--site-accent-light', SITE_CONFIG.accentLight || SITE_CONFIG.accentColor + '22');
+    document.documentElement.style.setProperty('--site-accent-dark', SITE_CONFIG.accentDark || SITE_CONFIG.accentColor);
+  }
+
+  // Number the topic cards
+  const cards = document.querySelectorAll('.topic-card');
+  cards.forEach((card, i) => {
+    const num = card.querySelector('.topic-number');
+    if (num) {
+      num.textContent = String(i + 1).padStart(2, '0');
+    }
+  });
+
+  // FAQ accordion
+  const faqList = document.getElementById('faq-list');
+  if (SITE_CONFIG.faqs && faqList) {
+    SITE_CONFIG.faqs.forEach(faq => {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+      item.innerHTML = `
+        <button class="faq-q">${faq.q}</button>
+        <div class="faq-a"><p>${faq.a}</p></div>
+      `;
+      const btn = item.querySelector('.faq-q');
+      const answer = item.querySelector('.faq-a');
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('open');
+        answer.classList.toggle('open');
+      });
+      faqList.appendChild(item);
+    });
+  }
+
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.style.borderBottomColor = '#333';
+      } else {
+        nav.style.borderBottomColor = '';
+      }
+    }, { passive: true });
+  }
+});
+
+
+</script>
+</body>
+</html>
